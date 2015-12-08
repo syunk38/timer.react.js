@@ -1,0 +1,24 @@
+{
+  "name": "blacktalk",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dist": "node_modules/.bin/gulp dist",
+    "start": "",
+    "watch": "./node_modules/.bin/gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/syunk38/hello_react.git"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-react": "^3.0.1",
+    "gulp-sourcemaps": "^1.6.0"
+  }
+}
