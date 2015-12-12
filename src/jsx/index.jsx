@@ -31,74 +31,81 @@ class CourseTime {
 }
 
 let course = new CourseTime("2015-12-07T00:50:00")
-console.log(course.getHour())
-// console.info(current)
 
-let Separator = React.createClass({
-  render: function() {
+class Separator extends React.Component {
+  render() {
     return (
       <span>:</span>
     )
   }
-})
+}
 
-let Second = React.createClass({
-  getDefaultProps: function(){
-    return {second: course.diffTime().second()}
-  },
-  render: function(){
+class Second extends React.Component {
+  render() {
     return (
       <span>{this.props.second}</span>
     )
   }
-})
+}
 
-let Minute = React.createClass({
-  getDefaultProps: function(){
-    return {minute: course.diffTime().minute()}
-  },
-  render: function(){
+class Minute extends React.Component {
+  render() {
     return (
       <span>{this.props.minute}</span>
     )
   }
-})
+}
 
-let Hour = React.createClass({
-  getDefaultProps: function(){
-    return {hour: course.getHour()}
-  },
-  render: function(){
+class Hour extends React.Component {
+  render() {
     return (
       <span>{this.props.hour}</span>
     )
   }
-})
+}
 
-let Timer = React.createClass({
+class Timer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      hour: course.getHour(),
+      minute: course.diffTime().minute(),
+      second: course.diffTime().second()
+    }
+  }
 
-  render: function() {
+  componentDidMount() {
+    setInterval(function(){
+      this.setState({
+        hour: course.getHour(),
+        minute: course.diffTime().minute(),
+        second: course.diffTime().second()
+      })
+    }.bind(this),1000)
+  }
+
+  render() {
     return (
-    <div>
-      <Hour/>
+    <div className="timer">
+      <Hour hour={this.state.hour}/>
       <Separator/>
-      <Minute/>
+      <Minute minute={this.state.minute}/>
       <Separator/>
-      <Second/>
+      <Second second={this.state.second}/>
     </div>
     )
   }
-})
+}
 
-let StartTime = React.createClass({
-  render: function() {
+class StartTime extends React.component {
+  render() {
     return (
       <div className="start-time">
         { course.formatedStartTime() }
       </div>
     )
   }
-})
+}
 
 let Container = React.createClass({
   render: function() {
