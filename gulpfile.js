@@ -20,8 +20,8 @@ gulp.task('jsCompile', function () {
   .pipe(gulp.dest(paths.dest))
 })
 
-gulp.task('clean-js-dest', function (cb) {
-  del([paths.dest + '*'], cb)
+gulp.task('clean-js-dest', function () {
+  del([paths.dest, paths.dest + '*'])
 })
 
 
